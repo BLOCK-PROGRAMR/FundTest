@@ -64,3 +64,26 @@ $ forge --help
 $ anvil --help
 $ cast --help
 ```
+# how to build forge create --rpc-url http://127.0.0.1:8545 --private-key <privatekey> <contract>
+# forge create --rpc-url <URL> --private-key <RAW_PRIVATE_KEY> <CONTRACT>
+
+# forge create Counter --interactive
+# forge script script/Counter.s.sol
+# forge script script/Counter.s.sol --rpc-url http://127.0.0.1:8545 --private-key 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a --broadcast
+# converting numbers
+     cast --to-base <hexnumber> dec
+
+
+# steps to deploy the contract:
+  # 1.forge compile (compile all contracts in the src)
+  # 2. forge test  (test all contract in the test)
+  # 3 deploy:
+# source .env
+# echo $RPC_URL
+# forge script script/Counter.s.sol --rpc-url $RPC_URL --private-key $PRIVATE_KEY --broadcast
+
+# cast commands
+# cast send 0x70997970C51812dc3A010C7d01b50e0d17dc79C8 "setNummber(uint256)" 15 --rpc-url $RPC_URL --private-key $PRIVATE_KEY 
+# cast call <Contract addr> "funcionname(parameter type)(return type)" --rpc-url $RPC_URL when we can read only the contract we cant use private key
+
+# 0xf25Bf6aae92B87894c41491Bd69dEcA569c2f4DE --seplia address to see the transacttion
