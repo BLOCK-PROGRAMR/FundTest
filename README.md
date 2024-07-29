@@ -87,3 +87,12 @@ $ cast --help
 # cast call <Contract addr> "funcionname(parameter type)(return type)" --rpc-url $RPC_URL when we can read only the contract we cant use private key
 
 # 0xf25Bf6aae92B87894c41491Bd69dEcA569c2f4DE --seplia address to see the transacttion
+
+
+# how to install the chainlink interfaces
+   # forge install https://github.com/smartcontractkit/chainlink-brownie-contracts@1.2.0  --no-commit
+
+
+# * Network: Sepolia
+     
+// eth/usd addr:0x694AA1769357215DE4FAC081bf1f309aDC325306
