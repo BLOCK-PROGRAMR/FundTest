@@ -96,3 +96,7 @@ $ cast --help
 # * Network: Sepolia
      
 // eth/usd addr:0x694AA1769357215DE4FAC081bf1f309aDC325306
+
+
+# forge test --match-path test/FundMe.t.sol 
+#  forge test --match-path test/FundMe.t.sol --match-test test_Number -vv

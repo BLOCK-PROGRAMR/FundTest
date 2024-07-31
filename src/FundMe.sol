@@ -3,22 +3,23 @@ pragma solidity ^0.8.22;
 import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 import {Priceconverter} from "./Priceconverter.sol";
-error NotOwner();
+error NotOwner(); //used for gas optimization
 
 contract FundMe {
-    using Priceconverter for uint256;
+    using Priceconverter for uint256; //using for library
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
     address[] private s_funderaddress;
+    AggregatorV3Interface public s_priceFeed;
     mapping(address => uint256) private s_addresstofunded;
-    AggregatorV3Interface private s_priceFeed;
-    address private immutable i_owner; //for gas saving
+
+    address public immutable i_owner; //for gas saving
     modifier Onlyowner() {
         if (msg.sender != i_owner) revert NotOwner();
         _;
     }
 
-    constructor(address priceFeed) {
-        s_priceFeed = AggregatorV3Interface(priceFeed);
+    constructor(address _priceFeed) {
+        s_priceFeed = AggregatorV3Interface(_priceFeed);
         i_owner = msg.sender;
     }
 
@@ -27,6 +28,12 @@ contract FundMe {
         require(_data >= MINIMUM_USD, "Insufficient funds");
         s_funderaddress.push(msg.sender);
         s_addresstofunded[msg.sender] += msg.value;
+    }
+
+    function getPrice(uint256 _amount) public view returns (uint256) {
+        (, int256 _data, , , ) = s_priceFeed.latestRoundData();
+        uint256 _data1 = uint256(_data) * _amount;
+        return _data1;
     }
 
     function withdraw() public Onlyowner returns (bool) {
