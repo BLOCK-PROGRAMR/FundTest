@@ -1,0 +1,7 @@
+CheckTest:test1() (gas: 31347)
+CounterTest:testFuzz_SetNumber(uint256) (runs: 256, μ: 30977, ~: 31288)
+CounterTest:test_Increment() (gas: 31303)
+FundeMeTest:test_Number() (gas: 8836)
+FundeMeTest:test_Owner() (gas: 13040)
+FundeMeTest:test_PriceFedd() (gas: 8386)
+FundeMeTest:test_usdNumber() (gas: 8444)
