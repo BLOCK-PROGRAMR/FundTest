@@ -1,5 +1,14 @@
 ## Foundry
 
+## foundry installation:
+  # 👉 curl -L https://foundry.paradigm.xyz | bash
+  # 👉 forge --versios  and cast --version
+  # 👉mkdir MyFoundryProject and cd MyFoundryProject
+  # 👉forge init
+  # 👉foundryup
+
+
+
 **Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
 
 Foundry consists of:
