@@ -71,7 +71,8 @@ $ cast --help
 # forge script script/Counter.s.sol
 # forge script script/Counter.s.sol --rpc-url http://127.0.0.1:8545 --private-key 0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a --broadcast
 # converting numbers
-     cast --to-base <hexnumber> dec
+   #
+   #  cast --to-base <hexnumber> dec
 
 
 # steps to deploy the contract:
@@ -106,3 +107,6 @@ $ cast --help
 
 # forge inspect storage <contractname> storage-layout
 # cast storage <contractaddress> <slotnumber>
+
+# cast sig "fund()"
+
