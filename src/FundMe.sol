@@ -6,7 +6,7 @@ import {Priceconverter} from "./Priceconverter.sol";
 error NotOwner(); //used for gas optimization
 
 contract FundMe {
-    using Priceconverter for uint256; //using for library
+    using Priceconverter for uint256; //using  library
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
     address[] private s_funderaddress;
     AggregatorV3Interface public s_priceFeed;
@@ -30,10 +30,10 @@ contract FundMe {
         s_addresstofunded[msg.sender] += msg.value;
     }
 
-    function getPrice(uint256 _amount) public view returns (uint256) {
+    function getPrice() public view returns (uint256) {
         (, int256 _data, , , ) = s_priceFeed.latestRoundData();
-        uint256 _data1 = uint256(_data) * _amount;
-        return _data1;
+
+        return uint256(_data * 10000000000);
     }
 
     function withdraw() public Onlyowner returns (bool) {
@@ -47,20 +47,14 @@ contract FundMe {
     }
 
     function cheaperwithdraw() public Onlyowner returns (bool) {
-        address[] memory s_cfunderaddr = s_funderaddress;
-        for (uint i = 0; i < s_cfunderaddr.length; i++) {
-            address _addr = s_cfunderaddr[i];
+        address[] memory m_cfunderaddr = s_funderaddress;
+        for (uint i = 0; i < m_cfunderaddr.length; i++) {
+            address _addr = m_cfunderaddr[i];
             s_addresstofunded[_addr] = 0;
         }
-        s_cfunderaddr = new address[](0);
+        s_funderaddress = new address[](0);
         (bool success, ) = i_owner.call{value: address(this).balance}("");
         return success;
-    }
-
-    function getAddressToAmountFunded(
-        address fundingAddress
-    ) public view returns (uint256) {
-        return s_addresstofunded[fundingAddress];
     }
 
     function getFunder(uint256 index) public view returns (address) {
@@ -73,5 +67,23 @@ contract FundMe {
 
     function getPriceFeed() public view returns (AggregatorV3Interface) {
         return s_priceFeed;
+    }
+
+    function getVersion() public view returns (uint256) {
+        return s_priceFeed.version();
+    }
+
+    function getAmountFundedtotheaddr(
+        address _Addr
+    ) external view returns (uint256) {
+        return s_addresstofunded[_Addr];
+    }
+
+    function getAddresstoFunded(uint256 index) external view returns (address) {
+        return s_funderaddress[index];
+    }
+
+    function getcontractBalance() public view returns (uint256) {
+        return address(this).balance;
     }
 }

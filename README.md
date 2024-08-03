@@ -100,3 +100,9 @@ $ cast --help
 
 # forge test --match-path test/FundMe.t.sol 
 # forge test --match-path test/FundMe.t.sol test_Owner -vvv
+# forge coverage
+
+# forge snapshot
+
+# forge inspect storage <contractname> storage-layout
+# cast storage <contractaddress> <slotnumber>
