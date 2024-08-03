@@ -1,7 +1,7 @@
 # Compiler files
 cache/
 out/
-/broadcast/
+broadcast/
 
 
 # Ignores development broadcast logs
@@ -15,6 +15,6 @@ docs/
 
 # Dotenv file
 .env
-.
+
 
 
